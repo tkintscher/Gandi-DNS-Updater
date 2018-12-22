@@ -66,7 +66,7 @@ Regular updates of the domain records can be performed using
 `systemd` timers:
 
   * Edit `gandi-update.sh` to your needs.
-  * In `gandi-update.service` change the `WorkingDirectory` path to the checkout directory.
+  * In `gandi-update.service` change the path in `ExecStart` to the checkout directory.
   * Link the files to systemd's config:
     ```bash
     mkdir -p $HOME/.config/systemd/user
@@ -75,4 +75,8 @@ Regular updates of the domain records can be performed using
   * Enable the timer:
     ```bash
     systemctl --user enable gandi-update.timer
+    ```
+  * Verify that it worked:
+    ```bash
+    systemctl --user list-timers
     ```
