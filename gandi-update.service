@@ -1,9 +1,8 @@
 [Unit]
-Description=Update IP address records of domains on Gandi
+Description=Gandi IP address update
 
 [Service]
 Type=oneshot
-WorkingDirectory=/path/to/checkout
-ExecStart=gandi-update.sh
+ExecStart=/path/to/checkout/gandi-update.sh
 RemainAfterExit=false
 ExecStop=

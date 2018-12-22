@@ -1,5 +1,5 @@
 [Unit]
-Description=Update IP address records of domains on Gandi
+Description=Gandi IP address update
 
 [Timer]
 OnBootSec=5min
@@ -7,4 +7,3 @@ OnUnitActiveSec=1h
 
 [Install]
 WantedBy=timers.target
-
