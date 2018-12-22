@@ -3,7 +3,7 @@ managed by [Gandi](https://gandi.net).
 
 It has no external requirements besides Python 3.
 This facilitates deployment on lightweight systems such as NAS, Raspberry Pi, etc.
-and running via schedulers (e.g. cron).
+and running via schedulers (e.g. systemd-timers or cron).
 
 The external IP address can be determined automatically through
 the service provided by [ifconfig.co](https://ifconfig.co).
@@ -63,10 +63,16 @@ a local (IPv4) address as is the case behind NAT.
 ## Use with systemd timers
 
 Regular updates of the domain records can be performed using
-`systemd` timers.
-Edit `gandi-update.sh` to your needs and
-change the path to the checkout directory `gandi-update.service`.
-After placing the `.service` and `.timer` files in `~/.config/systemd/user/`, run:
-```bash
-systemctl --user enable gandi-update.timer
-```
+`systemd` timers:
+
+  * Edit `gandi-update.sh` to your needs.
+  * In `gandi-update.service` change the `WorkingDirectory` path to the checkout directory.
+  * Link the files to systemd's config:
+    ```bash
+    mkdir -p $HOME/.config/systemd/user
+    ln -s $PWD/gandi-update.{service,timer} $HOME/.config/systemd/user
+    ```
+  * Enable the timer:
+    ```bash
+    systemctl --user enable gandi-update.timer
+    ```
