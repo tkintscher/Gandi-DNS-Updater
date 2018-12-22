@@ -48,9 +48,9 @@ def get_address(hostname, ipv4=False):
     An IPv6 address is returned, unless `ipv4` is set to `True`.
     '''
     addresses = socket.getaddrinfo(host=hostname, port=None, type=socket.SOCK_STREAM)
-    for family, _, _, (address, _, _, _) in addresses:
+    for family, _, _, _, address in addresses:
         if family == (socket.AF_INET if ipv4 else socket.AF_INET6):
-            return address
+            return address[0]
 
 
 def get_address_family(address):
@@ -157,3 +157,4 @@ if __name__ == '__main__':
         set_zone_config(args.api_key, uuid, subdomain, rec_type,
                         config['rrset_ttl'], local_address)
         print('Updated zone configuration.')
+
