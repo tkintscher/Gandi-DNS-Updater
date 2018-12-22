@@ -1,14 +1,14 @@
 # Gandi-DNS-Updater
 
 This script updates the A or AAAA records of a subdomain
-managed by [https://gandi.net](Gandi).
+managed by [Gandi](https://gandi.net).
 
 It has no external requirements besides Python 3.
 This allows deployment on e.g. minimal systems (NAS, Raspberry Pi, etc.)
 and running via schedulers (e.g. cron).
 
 The external IP address can be determined automatically through
-the service provided by [https://ifconfig.co].
+the service provided by [ifconfig.co](https://ifconfig.co).
 Please respect its rate limit policy:
 > *Please limit automated requests to 1 request per minute.*
 > No guarantee is made for requests that exceed this limit.
@@ -36,7 +36,7 @@ usage: gandi.py [-h] GANDI_API_KEY subdomain.domain.tld {A,AAAA} [address]
 $ python3 gandi.py GANDI_API_KEY foo.example.com AAAA
 ```
 
-This method uses the service of [https://ifconfig.co] to determine
+This method uses the service of [ifconfig.co](https://ifconfig.co) to determine
 the external IP address of the current machine.
 As mentioned before, please be responsible and do not use this service
 more than once per minute.
