@@ -1,5 +1,3 @@
-# Gandi-DNS-Updater
-
 This script updates the A or AAAA records of a subdomain
 managed by [Gandi](https://gandi.net).
 
