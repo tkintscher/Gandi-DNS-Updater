@@ -2,7 +2,7 @@ This script updates the A or AAAA records of a subdomain
 managed by [Gandi](https://gandi.net).
 
 It has no external requirements besides Python 3.
-This allows deployment on e.g. minimal systems (NAS, Raspberry Pi, etc.)
+This facilitates deployment on lightweight systems such as NAS, Raspberry Pi, etc.
 and running via schedulers (e.g. cron).
 
 The external IP address can be determined automatically through
