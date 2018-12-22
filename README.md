@@ -19,7 +19,7 @@ Please respect its rate limit policy:
 
 ## Usage
 
-```shell
+```bash
 usage: gandi.py [-h] GANDI_API_KEY subdomain.domain.tld {A,AAAA} [address]
 ```
 
@@ -30,8 +30,8 @@ usage: gandi.py [-h] GANDI_API_KEY subdomain.domain.tld {A,AAAA} [address]
 
 ### Option A: Automatically determine external IP address
 
-```shell
-$ python3 gandi.py GANDI_API_KEY foo.example.com AAAA
+```bash
+$ ./gandi.py GANDI_API_KEY foo.example.com AAAA
 ```
 
 This method uses the service of [ifconfig.co](https://ifconfig.co) to determine
@@ -41,15 +41,15 @@ more than once per minute.
 
 ### Option B: Use a fixed address
 
-```shell
-$ python3 gandi.py GANDI_API_KEY foo.example.com AAAA ::1
+```bash
+$ ./gandi.py GANDI_API_KEY foo.example.com AAAA ::1
 ```
 Now the `AAAA` record of `foo.example.com` will point to `::1`.
 
 ### Option C: Use the address of another host
 
-```shell
-$ python3 gandi.py GANDI_API_KEY foo.example.com AAAA foobox
+```bash
+$ ./gandi.py GANDI_API_KEY foo.example.com AAAA foobox
 ```
 
 The IP address of `foobox` will be resolved and
@@ -59,3 +59,14 @@ This way one machine can update the records of several other hosts,
 e.g. on the local network.
 Note that this may not make much sense if `foobox` is resolved to
 a local (IPv4) address as is the case behind NAT.
+
+## Use with systemd timers
+
+Regular updates of the domain records can be performed using
+`systemd` timers.
+Edit `gandi-update.sh` to your needs and
+change the path to the checkout directory `gandi-update.service`.
+After placing the `.service` and `.timer` files in `~/.config/systemd/user/`, run:
+```bash
+systemctl --user enable gandi-update.timer
+```
