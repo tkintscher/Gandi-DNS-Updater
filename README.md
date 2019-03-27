@@ -80,3 +80,23 @@ Regular updates of the domain records can be performed using
     ```bash
     systemctl --user list-timers
     ```
+
+## Use with systemd at bootup
+
+An update of the domain records can be done at boot time as follows:
+
+  * Edit `gandi-update.sh` to your needs.
+  * In `gandi-update.service` change the path in `ExecStart` to the checkout directory.
+  * Link the file to systemd's config:
+    ```bash
+    mkdir -p $HOME/.config/systemd/user
+    ln -s $PWD/gandi-update.service $HOME/.config/systemd/user
+    ```
+  * Enable the service:
+    ```bash
+    systemctl --user enable gandi-update.service
+    ```
+  * In order to run the script at boot (and not wait for the user to log in), enable a lingering systemd user instance:
+    ```bash
+    loginctl enable-linger $USER
+    ```

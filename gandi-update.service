@@ -6,3 +6,6 @@ Type=oneshot
 ExecStart=/path/to/checkout/gandi-update.sh
 RemainAfterExit=false
 ExecStop=
+
+[Install]
+WantedBy=default.target
